@@ -1,7 +1,17 @@
 import { useEffect, useState } from "react";
 
-function Message({ size }) {
+function Message({ size, featherCount }) {
   const [sizeClass, setSizeClass] = useState("")
+  const [message, setMessage] = useState("")
+  useEffect(() => {
+    if (featherCount <= 0) {
+      setMessage('Oh my! Your bird is naked!')
+    } else if (featherCount >= 10) {
+      setMessage('Full turkey! Time to eat him.')
+    } else {
+      setMessage('Coming along...')
+    }
+  }, [featherCount])
   useEffect(() => {
     // console.log('PictureDisplay size', size)
     let className = ""
@@ -25,11 +35,13 @@ function Message({ size }) {
     setSizeClass(className);
   }, [size])
 
-  return (
+    return (
     <div className={`message ${sizeClass}`}>
-      (Oh my! Your bird is naked!)
-    </div>
-  );
+      {message}
+    </div> 
+    )
+
+
 };
 
 export default Message;
