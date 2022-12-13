@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Message from "./components/Message";
 import PictureDisplay from "./components/PictureDisplay";
 
@@ -12,6 +12,22 @@ function App() {
   const [isLightBrown, setIsLightBrown] = useState(false);
   const [isYellow, setIsYellow] = useState(false);
 
+  // useEffect(() => {console.log('isRed', isRed)}, [isRed])
+  // useEffect(() => {console.log('isOrange', isOrange)}, [isOrange])
+  // useEffect(() => {console.log('isBrown', isBrown)}, [isBrown])
+  // useEffect(() => {console.log('isLightBrown', isLightBrown)}, [isLightBrown])
+  // useEffect(() => {console.log('isYellow', isYellow)}, [isYellow])
+  useEffect(() => {
+    const colorArr = [];
+    if (isRed) {colorArr.push('red')}
+    if (isOrange) {colorArr.push('orange')}
+    if (isBrown) {colorArr.push('brown')}
+    if (isLightBrown) {colorArr.push('lightBrown')}
+    if (isYellow) {colorArr.push('yellow')}
+    
+    setFeatherColors(colorArr);
+     
+  }, [isRed, isOrange, isBrown, isLightBrown, isYellow])
   return (
     <>
       <h1>Turkey Creator</h1>
